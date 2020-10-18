@@ -1,3 +1,0 @@
-C:/Users/ITALO/Documents/GitHub/XTree-Proyecto-Final/build/CMakeFiles/x-tree_project.dir
-C:/Users/ITALO/Documents/GitHub/XTree-Proyecto-Final/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/ITALO/Documents/GitHub/XTree-Proyecto-Final/build/CMakeFiles/ZERO_CHECK.dir
