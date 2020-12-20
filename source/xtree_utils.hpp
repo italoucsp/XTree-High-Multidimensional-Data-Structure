@@ -1,6 +1,20 @@
+#include <algorithm>
+#include <assert.h>
 #include <iostream>
 #include <memory>
-#include <algorithm>
+#include <string>
+#include <typeinfo>
 #include <vector>
 
-using namespace std;
+
+template<typename T, size_t N>
+struct HyperPoint {
+  HyperPoint();
+};
+
+template<typename T, size_t N>
+struct HyperRectangle {
+  HyperRectangle();
+private:
+  HyperPoint<T, N> bottom_left, top_right;
+};
