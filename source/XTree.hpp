@@ -55,10 +55,12 @@ private:
   };
 
   void topological_split();
+  size_t choose_split_axis();
+  size_t choose_split_index();
   void overlap_minimal_split();
   bool split_node();
   void insert(XLeaf_Entry &new_sp_obj);
-  std::shared_ptr<XNode> choose_leaf(XLeaf_Entry data_entry, std::stack<std::shared_ptr<XNode>> &parents_path);
+  void choose_leaf(XLeaf_Entry data_entry, std::stack<std::shared_ptr<XNode>> &parents_path);
 
   std::shared_ptr<XNode> root;
 public:
@@ -77,14 +79,44 @@ XTree<T, N, M>::XTree() {
 template<typename T, size_t N, size_t M>
 void XTree<T, N, M>::assign(std::vector<HyperPoint<T, N>> &raw_data_set) {
   for (HyperPoint<T, N> hp : raw_data_set) {
-
+    XLeaf_Entry new_entry(hp);
+    insert(new_entry);
   }
 }
 
 template<typename T, size_t N, size_t M>
+void XTree<T, N, M>::topological_split() {
+
+}
+
+template<typename T, size_t N, size_t M>
+size_t XTree<T, N, M>::choose_split_axis() {
+
+}
+
+template<typename T, size_t N, size_t M>
+size_t XTree<T, N, M>::choose_split_index() {
+
+}
+
+template<typename T, size_t N, size_t M>
+void XTree<T, N, M>::overlap_minimal_split() {
+
+}
+
+template<typename T, size_t N, size_t M>
+bool XTree<T, N, M>::split_node() {
+
+}
+
+template<typename T, size_t N, size_t M>
 void XTree<T, N, M>::insert(XLeaf_Entry &new_sp_obj) {
-  std::stack<std::shared_ptr<XNode>> parents;
-  std::shared_ptr<XNode> candidate_node = choose_leaf(new_sp_obj, parents);
+  std::stack<std::shared_ptr<XNode>> parents; choose_leaf(new_sp_obj, parents);
+  while (!parents.empty()) {
+    std::shared_ptr<XNode>& current = parents.top();
+    parents.pop();
+
+  }
   int action = 0;
   if (action == SPLIT) {
 
@@ -96,7 +128,8 @@ void XTree<T, N, M>::insert(XLeaf_Entry &new_sp_obj) {
 }
 
 template<typename T, size_t N, size_t M>
-std::shared_ptr<typename XTree<T, N, M>::XNode> XTree<T, N, M>::choose_leaf(XLeaf_Entry data_entry, std::stack<std::shared_ptr<XNode>> &parents_path) {
+void XTree<T, N, M>::choose_leaf(XLeaf_Entry data_entry, std::stack<std::shared_ptr<XNode>> &parents_path) {
+  assert(root != nullptr);
   std::shared_ptr<XNode> candidate_node = root;
   while (!candidate_node->is_leaf()) {
     parents_path.push(candidate_node);
@@ -107,7 +140,7 @@ std::shared_ptr<typename XTree<T, N, M>::XNode> XTree<T, N, M>::choose_leaf(XLea
         break;
     }
   }
-  return candidate_node;
+  parents_path.push(candidate_node);
 }
 
 //===============================================XNode Implementation==================================================

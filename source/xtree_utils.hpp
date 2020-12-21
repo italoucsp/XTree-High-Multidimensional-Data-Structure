@@ -86,7 +86,7 @@ bool HyperRectangle<T, N>::overlaps(const HyperRectangle<T, N>& other) {
 }
 
 template<typename T, size_t N>
-bool contains(const HyperPoint<T, N>& point) {
+bool HyperRectangle<T, N>::contains(const HyperPoint<T, N>& point) {
   for (size_t i(0); i < N; ++i) {
     if (!(bottom_left[i] <= point[i] && point[i] <= top_right[i]))
       return false;
